@@ -2,10 +2,11 @@
 
 ## EJERCICIO 01
 
-Crea un nuevo PROYECTO y crea el contador que creamos en android(sin funcionalidad por ahora).
+ENUNCIADO: Crea un nuevo PROYECTO y crea el contador que creamos en android(sin funcionalidad por ahora).
 
 ![image](https://github.com/anavarroo/NavarroVegaA02/assets/117681310/1cbe3c84-54b0-4b8f-a860-8901bce7bd32)
 
+## Breve explicacion del codigo: 
 
 1. Se importa el paquete flutter/material.dart, que proporciona las herramientas necesarias para construir interfaces de usuario en Flutter.
 
