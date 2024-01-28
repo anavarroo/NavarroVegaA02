@@ -1,77 +1,109 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:navarrovegaa02/widget/btn_count.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: ContadorFragment(),
-  ));
+  runApp(const MyApp());
 }
 
-class ContadorFragment extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color.fromARGB(255, 255, 255, 255)),
+          useMaterial3: true,
+        ),
+        home: CounterScreen());
+  }
+}
+
+class CounterScreen extends StatefulWidget {
+  @override
+  CounterScreenState createState() => CounterScreenState();
+}
+
+class CounterScreenState extends State<CounterScreen> {
+  int count = 0;
+
+  void incrementCount() {
+    setState(() {
+      count++;
+      debugPrint("Count: $count");
+    });
+  }
+
+  void decrementCount() {
+    setState(() {
+      if (count > 0) {
+        count--;
+        debugPrint("Count: $count");
+      }
+    });
+  }
+
+  void resetCount() {
+    setState(() {
+      count = 0;
+      debugPrint("Count: $count");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: const Color(0xFF2F2F2F),
+      backgroundColor: const Color.fromARGB(255, 53, 53, 52),
+      body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const SizedBox(),
-            const Text(
+            Text(
               "CONTADOR",
-              style: TextStyle(
-                fontFamily: 'poppins_black',
+              style: GoogleFonts.poppins(
                 color: Colors.white,
-                fontSize: 55,
+                fontSize: 60.0,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            const Text(
-              "0",
-              style: TextStyle(
-                fontFamily: 'poppins_thin',
-                color: Colors.white,
-                fontSize: 200,
+            Text(
+              "${count}",
+              style: GoogleFonts.poppins(
+                color: const Color.fromARGB(255, 255, 255, 255),
+                fontSize: 200.0,
+                fontWeight: FontWeight.w100,
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "+",
-                    style: TextStyle(fontSize: 25),
-                  ),
+                ButtonCount(
+                  text: '-',
+                  fontsize: 20.0,
+                  onPressed: decrementCount,
                 ),
-                const SizedBox(width: 15),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "RESET",
-                    style: TextStyle(fontSize: 25),
-                  ),
+                ButtonCount(
+                  text: 'RESET',
+                  fontsize: 13.0,
+                  onPressed: resetCount,
                 ),
-                const SizedBox(width: 15),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "-",
-                    style: TextStyle(fontSize: 25),
-                  ),
-                ),
+                ButtonCount(
+                  text: '+',
+                  fontsize: 20.0,
+                  onPressed: incrementCount,
+                )
               ],
             ),
-            const Text(
-              "By Alberto Navarro",
-              style: TextStyle(
-                fontFamily: 'poppins_medium',
-                color: Color(0xFFDCD7D7),
-                fontSize: 20,
-              ),
-            ),
-            const SizedBox(),
+            Text(
+              "Bienvenido, nombre_usuario",
+              style: GoogleFonts.poppins(
+                  color: Color.fromARGB(255, 132, 132, 132),
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.normal),
+            )
           ],
         ),
       ),
